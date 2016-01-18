@@ -38,7 +38,6 @@ CMD_NOT = "NOT"
 actionsList = [CMD_AND, CMD_OR, CMD_NOT, CMD_LSHIFT, CMD_RSHIFT]
  
     
-roots = []
 with open('test.file7', 'r') as f:
     primaryActionRE = re.compile(r'(.*)->\s(\w+)')
     binaryActionRE = re.compile(r'(\w+)\s(\w+)\s(\w+)')
@@ -79,8 +78,6 @@ with open('test.file7', 'r') as f:
                     #print("standalone")
                     if leftPart.isdigit():
                         value = leftPart
-                        if not nodeName in roots: 
-                            roots.append(nodeName)
                     else:
                         parent1 = leftPart
                     needCreateNode = True                    
