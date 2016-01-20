@@ -1,7 +1,9 @@
 from common import debug
-from itertools import groupby
+#from itertools import groupby
+import re
 
 def lookAndSay(number):
+    #solution 1
     # sNumber = str(number)
     # lastChar = sNumber[0]
     # currChar = sNumber[1:] + " "
@@ -18,9 +20,12 @@ def lookAndSay(number):
     #         else:
     #             count += 1            
     
-    mNumber = ''.join(list(str(len(list(g))) + k for k,g in groupby(number)))   
+    #solution 2
+    #mNumber = ''.join(list(str(len(list(g))) + k for k,g in groupby(number)))   
     
-    print(mNumber)
+    #solution 3
+    mNumber = re.sub(r'(.)\1*', lambda m: str(len(m.group(0))) + m.group(1), number)
+        
     return mNumber
 
 
@@ -29,10 +34,12 @@ def lookAndSay(number):
 if __name__ == "__main__":
 
     counter = 0
-    startNumber = "3113322113"
+    startNumber = "3113322113"    
     
-    print()
     number = startNumber
+    #10-1
+    #times = 40
+    #10-2
     times = 50
     while(counter != times):
        number = lookAndSay(number)
