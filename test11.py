@@ -90,6 +90,7 @@ def checkBytesPassword(bWord):
         straightChars = 1        
                     
         
+        
         res = test3.match(word)
         if res:
             debug("test3 pass")
