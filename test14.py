@@ -3,6 +3,8 @@ from math import floor
 
 import os
 
+CONSOLE_ANIMATE = True
+
 if __name__ == "__main__":
     # count = 1
     # for i in range(100):
@@ -55,7 +57,15 @@ if __name__ == "__main__":
         for deer in deers:
             deerScores[deer[0]] = 0
         deerDistances = dict()
+        
+        
         for seconds in range(1, time):
+            if CONSOLE_ANIMATE:
+                redraw = False    
+                if not seconds%10:
+                    os.system("cls")
+                    redraw = True
+                
             for deer in deers:
                 (name, speed, flyTime, restTime) = deer
                 travelDist = speed*flyTime
@@ -73,8 +83,15 @@ if __name__ == "__main__":
                             
                 #print(name, tempDistance)
                 deerDistances[deer[0]] = tempDistance
+                
+                if CONSOLE_ANIMATE and redraw:
+                    print(deer[0] + ':\n' + ' '*floor(tempDistance/20) + '*') 
             maxDistance = None
             deerLeaders = []
+        
+            
+    #     print("."*count)
+    #     count += 1
             for deer, dist in deerDistances.items():
                 if maxDistance != None:
                     if maxDistance < dist:
@@ -84,13 +101,21 @@ if __name__ == "__main__":
                         deerLeaders.append(deer)                    
                 else:
                     maxDistance = dist
-                    deerLeaders = [deer]
+                    deerLeaders = [deer]                    
                     
             for deer in deerLeaders:
-                deerScores[deer] = deerScores[deer] + 1                
+                deerScores[deer] = deerScores[deer] + 1
+            
+                
+            # for deer in deerScores:
+            #     if redraw:
+            #         print(deer + ':\n' + '.'*(floor(deerScores[deer]/10))) 
         
         maxScoreDeer = max(deerScores, key=deerScores.get)
         print("{} has max score {}".format(maxScoreDeer, deerScores[maxScoreDeer]))
+        maxDistanceDeer = max(deerDistances, key=deerDistances.get)
+        print("But {} has max distance {}".format(maxDistanceDeer, deerDistances[maxDistanceDeer]))
+        
         
                 
                 
