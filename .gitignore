@@ -1,3 +1,4 @@
 .vscode
 *pycache*
 1
+*.pyproj
